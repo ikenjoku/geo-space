@@ -3,10 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { GlobalStyle } from './GlobalStyle'
+import { GeoSpaceProvider } from './context/GeoSpaceProvider.jsx'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <GeoSpaceProvider>
+      <GlobalStyle />
+      <App />
+    </GeoSpaceProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
