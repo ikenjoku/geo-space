@@ -25,7 +25,6 @@ export const Chart = styled.div`
 `
 
 export const ChartContainer = styled.div`
-  /* width: 200px; */
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -78,7 +77,8 @@ export const DetailSection = styled.section`
 `
 
 export const Drawer = styled.div`
-  background-color: white;
+  background-color: #4a4e52;
+  color: white;
   overflow-x: scroll;
   scrollbar-width: none;
     -ms-overflow-style: none;
@@ -92,7 +92,7 @@ export const Drawer = styled.div`
     top: 0;
     left: 0;
     z-index: 100;
-    width: 30vw;
+    width: 35vw;
     height: 100vh;
     margin: 0px;
     padding: 0px;
