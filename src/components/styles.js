@@ -1,9 +1,20 @@
 import styled from 'styled-components'
 
 export const FilterContainer = styled.div`
-  /* display: flex;
-  flex-direction: row;
-  justify-content: space-between; */
+  @media (max-width: 500px) {
+    display: flex;
+    flex-direction: column;
+  }
+`
+
+export const StreetViewContainer = styled.div`
+  height: 250px;
+  width: 100%;
+  max-width: 300px;
+`
+
+export const DrawerFrame = styled.div`
+  position: relative;
 `
 
 export const Chart = styled.div`
@@ -14,7 +25,7 @@ export const Chart = styled.div`
 `
 
 export const ChartContainer = styled.div`
-  width: 200px;
+  /* width: 200px; */
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -22,10 +33,15 @@ export const ChartContainer = styled.div`
 `
 
 export const SelectField = styled.select`
-  width: 200px;
-  height: 30px;
-  margin-bottom: 1em;
-  display: block;
+  padding: .65em;
+  outline: auto;
+  border-radius: 5px;
+  width: 250px;
+  font-style: italic;
+  font-weight: 600;
+  font-family: monospace;
+  font-size: 14px;
+  margin: 1em;
 `
 
 export const Section = styled.section`
@@ -37,7 +53,7 @@ export const Section = styled.section`
   height: 200px;
   align-items: center;
 
-  @media (max-width: 400px) {
+  @media (max-width: 500px) {
     flex-direction: column;
     height: auto;
   }
@@ -47,18 +63,22 @@ export const MapView = styled.div`
   background-color: grey;
   height: 500px;
 
-  @media (min-width: 600px) {
+  @media (min-width: 650px) {
     height: calc(100vh - 200px);
-    width: 70%;
+    width: 70vw;
+  }
+`
+
+export const DetailSection = styled.section`
+
+  @media (min-width: 650px) {
+    display:flex;
+    flex-direction: row;
   }
 `
 
 export const Drawer = styled.div`
   background-color: white;
-  /* height: 200px; */
-  text-align: left;
-  margin: 0 auto;
-  width: 100%;
   overflow-x: scroll;
   scrollbar-width: none;
     -ms-overflow-style: none;
@@ -67,9 +87,16 @@ export const Drawer = styled.div`
     height: 0;
     }
 
-  @media (min-width: 600px) {
-    height: calc(100vh - 200px);
-    width: 25%;
+  @media (min-width: 650px) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 30vw;
+    height: 100vh;
+    margin: 0px;
+    padding: 0px;
+    max-width: 300px;
     overflow-y: scroll;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -79,13 +106,31 @@ export const Drawer = styled.div`
     }
   }
 `
+export const DetailContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1em;
 
-export const DetailSection = styled.section`
+  & > div {
+    margin-right: 0.5em;
+  }
 
-  @media (min-width: 600px) {
+  @media (min-width: 650px) {
     display:flex;
-    flex-direction: row;
-    justify-content: space-between
+    flex-direction: column;
+  }
+`
+
+export const PropertyContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  min-width: 500px;
+
+  @media (min-width: 650px) {
+    display: flex;
+    flex-direction: column;
+    min-width: unset;
   }
 `
 
@@ -97,8 +142,6 @@ export const Titles = styled.p`
 
 export const HeaderTitle = styled.h2`
   color: #5389dc;
-  /* padding: 0.5em; */
-
 `
 
 export const Attributes = styled.div`
@@ -108,21 +151,6 @@ export const Attributes = styled.div`
   & div {
     margin-right: 1em;
     text-align: center;
-  }
-`
-
-export const DetailContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-
-  & > div {
-    margin-right: 0.5em;
-  }
-
-  @media (min-width: 600px) {
-    display:flex;
-    flex-direction: column;
   }
 `
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Filters, PieChart, PropertyDetails, Map } from './components'
-import { Section, Drawer, MapView, DetailSection } from './components/styles'
+import { Section, Drawer, MapView, DetailSection, DrawerFrame } from './components/styles'
 import { useGeoSpace } from './context/GeoSpaceProvider'
 
 function App() {
@@ -17,11 +17,14 @@ function App() {
        {filteredAccommodations && <PieChart chartData={filteredAccommodations} />}
      </Section>
      <DetailSection>
-       <Drawer>
-         <PropertyDetails
-          selectedProperty={selected_accommodation}
-        />
-       </Drawer>
+       <DrawerFrame>
+        <Drawer>
+          <PropertyDetails
+            selectedProperty={selected_accommodation}
+          />
+        </Drawer>
+
+       </DrawerFrame>
        <MapView>
          { filteredAccommodations && <Map data={filteredAccommodations} />}
        </MapView>
