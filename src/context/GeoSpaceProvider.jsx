@@ -1,4 +1,4 @@
-import React, { useState, createContext, useContext, useReducer, useEffect } from 'react'
+import React, { createContext, useContext, useReducer, useEffect } from 'react'
 import { actions } from './GeoSpaceProvider.actions'
 import { getData, getOptions } from '../utils'
 
@@ -6,6 +6,8 @@ const {
   LOADED_ACCOMMODATIONS,
   LOADING_ACCOMMODATIONS,
   ERROR_LOADING_ACCOMMODATIONS,
+  FILTER_ACCOMMODATIONS,
+  SELECT_ACCOMMODATION,
 } = actions
 
 export const initialState = {
@@ -14,7 +16,9 @@ export const initialState = {
   errorLoadingAccommodations: false,
   bedOptions: null,
   typeOptions: null,
-  bathroomOptions: null
+  bathroomOptions: null,
+  filteredAccommodations: null,
+  selected_accommodation: null
 }
 
 export const GeoSpaceReducer = (state, { type, payload }) => {
@@ -23,6 +27,7 @@ export const GeoSpaceReducer = (state, { type, payload }) => {
       return {
         ...state,
         accommodations: payload.transformedData,
+        filteredAccommodations: payload.transformedData,
         bedOptions: payload.bedOptions,
         typeOptions: payload.typeOptions,
         bathroomOptions: payload.bathroomOptions,
@@ -41,6 +46,18 @@ export const GeoSpaceReducer = (state, { type, payload }) => {
         ...state,
         loadingAccommodations: false,
         errorLoadingAccommodations: true,
+      }
+    }
+    case FILTER_ACCOMMODATIONS: {
+      return {
+        ...state,
+        filteredAccommodations: payload,
+      }
+    }
+    case SELECT_ACCOMMODATION: {
+      return {
+        ...state,
+        selected_accommodation: payload,
       }
     }
     default:
@@ -93,7 +110,7 @@ const GeoSpaceProvider = (props) => {
   useEffect(() => {
     fetchInitialData()
   }, [])
-  console.log('state', state)
+
   return (
     <GeoSpaceContext.Provider
       value={{
