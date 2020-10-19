@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const FilterContainer = styled.div`
   @media (max-width: 500px) {
@@ -90,7 +90,7 @@ export const Drawer = styled.div`
   @media (min-width: 650px) {
     position: absolute;
     top: 0;
-    left: 0;
+    left: -500px;
     z-index: 100;
     width: 35vw;
     height: 100vh;
@@ -104,6 +104,11 @@ export const Drawer = styled.div`
     width: 0;
     height: 0;
     }
+
+    ${ ({ selectedProperty }) => !!selectedProperty && css`
+    transition: 750ms;
+    left: 0
+  `};
   }
 `
 export const DetailContainer = styled.div`
@@ -160,6 +165,14 @@ export const MessageContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 3em;
+`
+
+export const CloseButton = styled.button`
+  margin-top: 2em;
+  padding: 6px 18px;
+  color: #ffb1b1;
+  background-color: #4a4e52;
+  outline-style: none;
 `
 
 

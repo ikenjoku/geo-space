@@ -7,7 +7,7 @@ function App() {
   const { state: {
     filteredAccommodations,
     selected_accommodation,
-  }
+  }, dispatch
 } = useGeoSpace()
 
   return (
@@ -18,9 +18,10 @@ function App() {
      </Section>
      <DetailSection>
        <DrawerFrame>
-        <Drawer>
+        <Drawer selectedProperty={selected_accommodation}>
           <PropertyDetails
             selectedProperty={selected_accommodation}
+            dispatch={dispatch}
           />
         </Drawer>
 

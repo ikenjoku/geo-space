@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from 'react'
 import { capitalize, propertyType } from '../utils'
+import { actions } from '../context/GeoSpaceProvider.actions'
 import {
   Titles,
   Attributes,
+  CloseButton,
   MessageContainer,
   DetailContainer,
   PropertyContainer,
@@ -29,7 +31,7 @@ function initialize(lat, lng) {
 }
 
 
-export default function PropertyDetails({ selectedProperty }) {
+export default function PropertyDetails({ selectedProperty, dispatch }) {
   const streetViewRef = useRef()
   const { lat, lon } = selectedProperty || {}
   useEffect(() => {
@@ -37,6 +39,9 @@ export default function PropertyDetails({ selectedProperty }) {
       initialize(+lat, +lon)
     }
   }, [streetViewRef, lat, lon])
+
+  const clearSelection = () => dispatch({ type: actions.CLEAR_SELECTION })
+
   return (
     <>
       { selectedProperty ?
@@ -65,8 +70,9 @@ export default function PropertyDetails({ selectedProperty }) {
             <p>{selectedProperty.address}</p>
             <Titles>Price</Titles>
             <p>&euro; {selectedProperty.price || 'Not Available'}</p>
+            <CloseButton onClick={clearSelection}>Close</CloseButton>
           </div>
-        </DetailContainer> 
+        </DetailContainer>
       </PropertyContainer>
       </>
       :

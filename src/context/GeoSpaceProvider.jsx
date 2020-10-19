@@ -8,6 +8,7 @@ const {
   ERROR_LOADING_ACCOMMODATIONS,
   FILTER_ACCOMMODATIONS,
   SELECT_ACCOMMODATION,
+  CLEAR_SELECTION,
 } = actions
 
 export const initialState = {
@@ -58,6 +59,12 @@ export const GeoSpaceReducer = (state, { type, payload }) => {
       return {
         ...state,
         selected_accommodation: payload,
+      }
+    }
+    case CLEAR_SELECTION: {
+      return {
+        ...state,
+        selected_accommodation: null,
       }
     }
     default:
