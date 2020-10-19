@@ -1,36 +1,33 @@
 import React from 'react';
-import { Filters, PieChart, PropertyDetails } from './components'
+import { Filters, PieChart, PropertyDetails, Map } from './components'
 import { Section, Drawer, MapView, DetailSection } from './components/styles'
-function App() {
+import { useGeoSpace } from './context/GeoSpaceProvider'
 
-  const selectedProperty = {
-    address: '120 SHEELIN GROVE BALLYBRACK GLENAGEARY CO. DUBLIN A96 V2T6',
-    lat: '53.248862',
-    lon: '-6.12526',
-    sqm: '82',
-    price: '306000',
-    'property type': 'TERRACED',
-    'satellite image': 'http://maps.google.com/maps?t=k&q=loc:53.248862,-6.12526',
-    baths: '1',
-    beds: '1'
+function App() {
+  const { state: {
+    filteredAccommodations,
+    selected_accommodation,
   }
+} = useGeoSpace()
 
   return (
    <div>
      <Section>
        <Filters />
-       <PieChart />
+       {filteredAccommodations && <PieChart chartData={filteredAccommodations} />}
      </Section>
      <DetailSection>
        <Drawer>
          <PropertyDetails
-          selectedProperty={selectedProperty}
+          selectedProperty={selected_accommodation}
         />
        </Drawer>
-       <MapView>Map</MapView>
+       <MapView>
+         { filteredAccommodations && <Map data={filteredAccommodations} />}
+       </MapView>
      </DetailSection>
    </div>
-  );
+  )
 }
 
-export default App;
+export default App
