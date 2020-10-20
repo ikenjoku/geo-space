@@ -129,4 +129,4 @@ const GeoSpaceProvider = (props) => {
   )
 }
 
-export { GeoSpaceProvider, useGeoSpace }
+export { GeoSpaceProvider, useGeoSpace, GeoSpaceContext }
